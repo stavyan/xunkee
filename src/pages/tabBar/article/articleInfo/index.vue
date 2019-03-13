@@ -1,6 +1,6 @@
 <template>
   <div class="article-info">
-    <p class="article-info_title">{{article.title || '标题'}}</p>
+    <p class="article-info_title">{{articleInfo.title || '标题'}}</p>
     <p class="article-info_content" v-html="articleInfo.content || 'markdown text'"></p>
   </div>
 </template>

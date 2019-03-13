@@ -10,8 +10,8 @@
 	},
 	"miniprogramRoot": "dist/",
 	"compileType": "miniprogram",
-	"appid": "wxb66d7c09f8195be0",
-	"projectname": "meedu1.0",
+	"appid": "wx5ce9bc37a17dd5d8",
+	"projectname": "xunkee",
 	"libVersion": "2.4.0",
 	"condition": {
 		"search": {

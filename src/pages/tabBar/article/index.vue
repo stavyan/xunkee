@@ -7,7 +7,7 @@
         <div class="cate_content">
           <div class="cate_content_name">{{item.name}}</div>
           <div class="cate_content_info">{{item.info}}</div>
-          <div class="cate_content_other">共{{item.num}}篇文章</div>
+          <div class="cate_content_other">共{{item.id}}篇文章</div>
         </div>
       </li>
     </ul>
@@ -56,8 +56,11 @@ export default {
       this.$http.article.getCategoryList(data).then(res => {
         if (res.data && res.data.length > 0) {
           this.categoryList = res.data
+          for (let i = 0; i < this.categoryList.length; i++) {
+            this.categoryList[i].avatar = 'https://pic3.zhimg.com/v2-783e841e0c5290281b6aaf86e055d543_xl.jpg'
+          }
         }
-        this.categoryList = [{name: '分类one', avatar: 'https://pic3.zhimg.com/v2-783e841e0c5290281b6aaf86e055d543_xl.jpg', info: '分类简介-------', num: '56'}]
+        // this.categoryList = [{name: '分类one', avatar: 'https://pic3.zhimg.com/v2-783e841e0c5290281b6aaf86e055d543_xl.jpg', info: '分类简介-------', num: '56'}]
       })
     },
     // 获取文章列表
@@ -68,15 +71,15 @@ export default {
     }
   },
   onShow () {
-    const that = this
-    wx.request({
-      url: 'http://localhost:3000/all',
-      method: 'GET',
-      success (res) {
-        console.log('------<', res)
-        that.blogList = res.data.data
-      }
-    })
+    // const that = this
+    // wx.request({
+    //   url: 'http://localhost:3000/all',
+    //   method: 'GET',
+    //   success (res) {
+    //     console.log('------<', res)
+    //     that.blogList = res.data.data
+    //   }
+    // })
   },
   created () {
     const logs = (wx.getStorageSync('logs') || [])

@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import { formatTime } from '@/utils/index'
+// import { formatTime } from '@/utils/index'
 import card from '@/components/card'
 
 export default {
@@ -63,11 +63,9 @@ export default {
   methods: {
     init () {},
     inputBlur () {
-      console.log('inputBlur请输入评论')
     },
     // 提交评论
     submit () {
-      console.log('submit请输入评论')
       if (this.commentContent) {
         this._submitComments(this.commentContent, this.courseId, this.type)
       } else {
@@ -94,11 +92,15 @@ export default {
           }, 1000)
           return
         }
-        res.data && res.data.forEach(e => {
-          e.created_format = formatTime(e.created_at, true)
-        })
-        this.callbackCommentsList = this.callbackCommentsList.concat(res.data)
-        console.log('callbackCommentsList', res.data, this.callbackCommentsList)
+        // res.data && res.data.forEach(e => {
+        //   e.created_format = formatTime(e.created_at, true)
+        // })
+        // this.callbackCommentsList = this.callbackCommentsList.concat(res.data)
+        setTimeout(() => {
+          wx.redirectTo({
+            url: '/pages/login/main'
+          })
+        }, 1000)
       })
     }
   },
@@ -128,7 +130,7 @@ export default {
   padding: 20px;
   box-sizing: border-box;
   /*
-  * comments list 
+  * comments list
   */
   .comments-list{
     .list-container{
@@ -189,7 +191,7 @@ export default {
     }
   }
   /*
-  * section label 
+  * section label
   */
   .section-label{
     padding: 15px 0;
@@ -206,7 +208,7 @@ export default {
     opacity: .85;
   }
   /*
-  * input line 
+  * input line
   */
   .input-line{
     display: flex;

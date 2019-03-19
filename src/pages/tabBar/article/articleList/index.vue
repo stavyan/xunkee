@@ -25,16 +25,13 @@ export default {
   data () {
     return {
       logs: [],
-      articleList: []
-    }
-  },
-  computed: {
-    categoryId () {
-      return this.$mp.query.id || ''
+      articleList: [],
+      categoryId: null
     }
   },
   methods: {
     init () {
+      this.categoryId = this.$mp.query.id
       this._getArticleList({page_size: 10, page: 1}, this.categoryId)
     },
     goArticleInfo (e) {
@@ -89,7 +86,7 @@ export default {
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;
-      border-bottom: 1px solid @border-color; 
+      border-bottom: 1px solid @border-color;
       &_title{
         font-size: 28rpx;
         color: #1A1A1A;
@@ -99,7 +96,7 @@ export default {
         justify-content: space-between;
         font-size: 24rpx;
         color: @font-color-gray;
-      }           
+      }
     }
   }
 }

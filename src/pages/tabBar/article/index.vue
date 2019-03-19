@@ -12,7 +12,7 @@
       </li>
     </ul>
     <ul class="container">
-      <li v-for="(item, index) in blogList"  :key="index" class="list-item">
+      <li v-for="(item, index) in blogList" :key="index" class="list-item">
         {{index + 1}}. {{item.post_title}}
       </li>
     </ul>
@@ -65,6 +65,7 @@ export default {
     },
     // 获取文章列表
     _getArticleList (data, id) {
+      console.log(id)
       this.$http.article.getArticleList(data, id).then(res => {
         this.categoryList = res.data
       })

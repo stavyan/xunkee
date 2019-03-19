@@ -28,4 +28,5 @@ export default {
   -webkit-transition: width 2s;
   -o-transition: width 2s;
 }
+img{max-width: 100%;}
 </style>

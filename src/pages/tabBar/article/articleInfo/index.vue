@@ -1,7 +1,8 @@
 <template>
   <div class="article-info">
     <p class="article-info_title">{{articleInfo.title || '标题'}}</p>
-    <p class="article-info_content" v-html="articleInfo.content || 'markdown text'"></p>
+    <!--{{articleInfo.content}}-->
+    <p class="article-info_content" v-html="articleInfo.content || '暂无数据'"></p>
   </div>
 </template>
 
@@ -17,24 +18,22 @@ export default {
   data () {
     return {
       articleInfo: '',
-      categoryList: []
-    }
-  },
-  computed: {
-    articleId () {
-      return this.$mp.query.id
+      categoryList: [],
+      nodes: [],
+      articleId: null
     }
   },
   methods: {
     init () {
+      this.articleId = this.$mp.query.id
       this._getArticleInfo({page_size: 10, page: 1}, this.articleId)
     },
     // 获取文章列表
     _getArticleInfo (data, id) {
       this.$http.article.getArticleInfo(data, id).then(res => {
-        this.articleInfo = res.data
+        this.articleInfo = res.data ? res.data : '文章test'
+        this.articleInfo.content = this.articleInfo.content.replace(/img/gi, 'img style="width:100%;height:auto"')
       })
-      this.articleInfo = this.articleInfo ? this.articleInfo : '文章test'
     }
   },
 
@@ -55,13 +54,23 @@ export default {
   flex-direction: column;
   padding: 40rpx;
   &_title {
-    font-size: 32rpx;
+    font-size: 36rpx;
     color: #1A1A1A;
+    margin-bottom: 15rpx;
   }
   &_content{
     font-size: 28rpx;
     color: #777;
   }
+  .article-info_content {
+    font-size: 28rpx;
+    clear: both;
+    .rich-img {
+      width: 100% ;
+      height: auto ;
+    }
+  }
 }
+img{max-width: 100%;}
 
 </style>
